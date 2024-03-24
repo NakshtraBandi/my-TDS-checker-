@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDS Level Checker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: black; /* Black background */
+            color: white; /* White text color */
+        }
+
+        header {
+            background-color: #4CAF50; /* Green header background */
+            color: white;
+            padding: 1em;
+            font-size: 1.5em;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background: black; /* Black background for the form */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            color: white; /* White text color for the form */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50; /* Green submit button background */
+            color: white;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: white; /* White text color for the result messages */
+        }
+
+        table {
+            margin: 20px auto;
+            width: 60%;
+            color: white; /* White text color for the table */
+            background-color: white; /* White background for the table */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #4CAF50; /* Add border to cells */
+        }
+
+        th {
+            background-color: #4CAF50; /* Green header background for the table */
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #4CAF50; /* Dark green background for even rows */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #4CAF50; /* Dark green background for odd rows */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        TDS Level Checker
+    </header>
+
+    <table>
+        <tr>
+            <th>TDS Range</th>
+            <th>Health Status</th>
+            <th>Color</th>
+        </tr>
+        <tr>
+            <td>&lt; 100</td>
+            <td>Health Effects of Low TDS</td>
+            <td style="color: red;">Red</td>
+        </tr>
+        <tr>
+            <td>100 - 300</td>
+            <td>The quality of your water is amazing</td>
+            <td style="color: #4CAF50;">Green</td>
+        </tr>
+        <tr>
+            <td>&gt; 300</td>
+            <td>High TDS, not fit for drinking</td>
+            <td style="color: red;">Red</td>
+        </tr>
+    </table>
+
+    <form id="tdsForm">
+        <label for="tdsLevel">Enter TDS level in water:</label>
+        <input type="number" id="tdsLevel" name="tdsLevel" required>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("tdsForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var tdsLevel = parseFloat(document.getElementById("tdsLevel").value);
+            var resultContainer = document.getElementById("result");
+
+            if (tdsLevel < 100) {
+                resultContainer.innerHTML = '<p style="color: red;">Health Effects of Low TDS: <a href="https://www.researchgate.net/publication/252043662_Health_Risk_from_Drinking_Demineralized_Water/link/5506cc870cf2d60c0e6da077/download?_tp=eyJjb250ZXh0Ijp7ImZpcnS0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uIn19" target="_blank">Click here</a></p><p>For more information, visit <a href="https://www.canva.com/design/DAF_RAk-ZRs/WiXtDQBIQ1i8_EUvbBwluw/edit" target="_blank">this link</a></p>';
+            } else if (tdsLevel > 300) {
+                resultContainer.innerHTML = '<p style="color: red;">High TDS, not fit for drinking!!!!</p><p>For more information, visit <a href="https://www.canva.com/design/DAF_RAk-ZRs/WiXtDQBIQ1i8_EUvbBwluw/edit" target="_blank">this link</a></p>';
+            } else if (tdsLevel >= 100 && tdsLevel <= 300) {
+                resultContainer.innerHTML = '<p style="color: #4CAF50;">The quality of your water is amazing, it has passed the test</p><p>For more information, visit <a href="https://www.canva.com/design/DAF_RAk-ZRs/WiXtDQBIQ1i8_EUvbBwluw/edit" target="_blank">this link</a></p>';
+            }
+        });
+    </script>
+</body>
+</html>
